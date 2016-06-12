@@ -1,0 +1,11 @@
+body {
+	background-color: red;
+
+	div{
+		background-color: blue;
+	}
+}
+
+section {
+	margin-top: 15px;
+}

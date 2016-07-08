@@ -1,0 +1,36 @@
+html {
+	font-size: 62.5%;
+	box-sizing: border-box;
+}
+
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+	outline: none;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	color: $color-main;
+	background-color: $color-background;
+	font-family: $font-main;
+	font-weight: $font-weight-light;
+	font-size:1.5rem;
+	text-align: justify;
+	line-height: 160%;
+
+	@media $small {
+		font-size:1.6rem;
+		text-align: left;
+	}
+}
+
+p {
+	hyphens: auto;
+}

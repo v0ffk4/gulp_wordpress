@@ -1,0 +1,33 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:400,300italic,300,700);
+
+/*
+@font-face {
+	font-family: Proxima-Normal; 
+	src: url(../fonts/Proxima-Nova-Light.otf);
+	}
+
+@font-face {
+	font-family: Proxima-Bold; 
+	src: url(../fonts/Proxima-Nova-Bold.otf);
+	}
+*/
+
+$font-main: Lato, Helvetica, Arial, sans-serif;
+$font-weight-light:		300;
+$font-weight-normal:	400;
+$font-weight-bold:		600;
+
+$font-size-large:	1.8rem;
+$font-size-medium:	1.4rem;
+$font-size-small:	1rem;
+
+$offwhite:		#eeed8b6;
+
+$small:		screen and (min-width:600px);
+$medium:	screen and (min-width:900px);
+$large:		screen and (min-width:1200px);
+
+$container-default-width:	80%;
+$container-max-width:		1200px;
+
+$link-transition-duration: 0.5s;

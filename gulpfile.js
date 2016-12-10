@@ -51,7 +51,7 @@ gulp.task('cssPrep', function() {
 	]))
 
 	.on('error', gutil.log)
-		.pipe(gulp.dest(themeDirectory))
+		.pipe(gulp.dest(themeDirectory + '/c'))
 		.pipe(livereload());
 
 });
@@ -64,7 +64,7 @@ gulp.task('jsConcat', function(){
 		.pipe(concat('script.js'))
 		.pipe(uglify())
 		.pipe(rename({suffix: '.min'}))
-		.pipe(gulp.dest(themeDirectory + '/js'))
+		.pipe(gulp.dest(themeDirectory + '/j'))
 		.pipe(livereload());
 
 });

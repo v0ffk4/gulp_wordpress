@@ -6,6 +6,9 @@ var gulp = require('gulp'),
 	//html processing
 	htmlmin = require('gulp-html-minifier'),
 
+	//image processing
+	svgmin = require('gulp-svgmin');
+
 	//css processing
 	postcss = require('gulp-postcss'),
 	autoprefixer = require('autoprefixer'),
@@ -20,6 +23,7 @@ var gulp = require('gulp'),
 	//define directories
 	themeDirectory = 'wordpress/wp-content/themes/YOUR_THEME_NAME',
 	dev = 'dev/',
+	devImg = 'dev/images/',
 	devCss = 'dev/css/',
 	devJs = 'dev/js/'
 
@@ -38,6 +42,16 @@ gulp.task('phpMin', function() {
 		.pipe(livereload());
 
 });
+
+
+//svg minify
+gulp.task('svgMin', function () {
+    gulp.src(devImg + '*.svg')
+        .pipe(svgmin())
+        .pipe(gulp.dest(themeDirectory + '/i'))
+        .pipe(livereload());
+});
+
 
 
 //compile SASS synthax / minify
@@ -74,11 +88,12 @@ gulp.task('jsConcat', function(){
 gulp.task('watch', function() {
 
 	livereload.listen();
-	gulp.watch(devCss + '**/*.css', ['cssPrep']);
 	gulp.watch(dev + '**/*.php', ['phpMin']);
+	gulp.watch(devImg + '**/*.svg', ['svgMin']);
+	gulp.watch(devCss + '**/*.css', ['cssPrep']);	
 	gulp.watch(devJs + '*.js', ['jsConcat']);
 
 });
 
 
-gulp.task( 'default', [ 'phpMin', 'cssPrep', 'jsConcat', 'watch' ] );
+gulp.task( 'default', [ 'phpMin', 'svgMin', 'cssPrep', 'jsConcat', 'watch' ] );

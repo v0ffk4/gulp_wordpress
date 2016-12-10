@@ -63,3 +63,6 @@ wp-config.php
 
 #ignore src directory
 src/
+
+#ignore node_modules directory
+node_modules/

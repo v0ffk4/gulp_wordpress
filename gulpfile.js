@@ -7,7 +7,7 @@ var gulp = require('gulp'),
 	htmlmin = require('gulp-html-minifier'),
 
 	//image processing
-	svgmin = require('gulp-svgmin');
+	svgmin = require('gulp-svgmin'),
 
 	//css processing
 	postcss = require('gulp-postcss'),

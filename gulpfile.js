@@ -27,10 +27,8 @@ var gulp = require('gulp'),
 	devCss = 'dev/css/',
 	devJs = 'dev/js/'
 
-
 //copy & minify php
 gulp.task('phpMin', function() {
-
 	gulp.src(dev + '*.php')
 		.pipe(htmlmin({
 			collapseWhitespace: true,
@@ -40,7 +38,6 @@ gulp.task('phpMin', function() {
 		}))
 		.pipe(gulp.dest(themeDirectory))
 		.pipe(livereload());
-
 });
 
 
@@ -52,48 +49,36 @@ gulp.task('svgMin', function () {
         .pipe(livereload());
 });
 
-
-
 //compile SASS synthax / minify
 gulp.task('cssPrep', function() {
-
 	gulp.src(devCss + 'style.css')
 		.pipe(postcss([
 			precss(),
 			autoprefixer(),
 			cssnano()
 	]))
-
 	.on('error', gutil.log)
 		.pipe(gulp.dest(themeDirectory + '/c'))
 		.pipe(livereload());
-
 });
-
 
 //concatinate & minify & rename javascript
 gulp.task('jsConcat', function(){
-
 	gulp.src(devJs + '*.js')
 		.pipe(concat('script.js'))
 		.pipe(uglify())
 		.pipe(rename({suffix: '.min'}))
 		.pipe(gulp.dest(themeDirectory + '/j'))
 		.pipe(livereload());
-
 });
-
 
 //watch & process
 gulp.task('watch', function() {
-
 	livereload.listen();
 	gulp.watch(dev + '**/*.php', ['phpMin']);
 	gulp.watch(devImg + '**/*.svg', ['svgMin']);
 	gulp.watch(devCss + '**/*.css', ['cssPrep']);	
 	gulp.watch(devJs + '*.js', ['jsConcat']);
-
 });
-
 
 gulp.task( 'default', [ 'phpMin', 'svgMin', 'cssPrep', 'jsConcat', 'watch' ] );

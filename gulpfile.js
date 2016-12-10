@@ -20,12 +20,12 @@ var gulp = require('gulp'),
 	//define directories
 	themeDirectory = 'wordpress/wp-content/themes/YOUR_THEME_NAME',
 	dev = 'dev/',
-	devCSS = 'dev/css/',
-	devJS = 'dev/js/'
+	devCss = 'dev/css/',
+	devJs = 'dev/js/'
 
 
 //copy & minify php
-gulp.task('php', function() {
+gulp.task('phpMin', function() {
 
 	gulp.src(dev + '*.php')
 		.pipe(htmlmin({
@@ -43,7 +43,7 @@ gulp.task('php', function() {
 //compile SASS synthax / minify
 gulp.task('cssPrep', function() {
 
-	gulp.src(devCSS + 'style.css')
+	gulp.src(devCss + 'style.css')
 		.pipe(postcss([
 			precss(),
 			autoprefixer(),
@@ -60,7 +60,7 @@ gulp.task('cssPrep', function() {
 //concatinate & minify & rename javascript
 gulp.task('jsConcat', function(){
 
-	gulp.src(devJS + '*.js')
+	gulp.src(devJs + '*.js')
 		.pipe(concat('script.js'))
 		.pipe(uglify())
 		.pipe(rename({suffix: '.min'}))
@@ -74,11 +74,11 @@ gulp.task('jsConcat', function(){
 gulp.task('watch', function() {
 
 	livereload.listen();
-	gulp.watch(devCSS + '**/*.css', ['cssPrep']);
-	gulp.watch(dev + '**/*.php', ['php']);
-	gulp.watch(devJS + '*.js', ['jsConcat']);
+	gulp.watch(devCss + '**/*.css', ['cssPrep']);
+	gulp.watch(dev + '**/*.php', ['phpMin']);
+	gulp.watch(devJs + '*.js', ['jsConcat']);
 
 });
 
 
-gulp.task( 'default', [ 'php', 'cssPrep', 'jsConcat', 'watch' ] );
+gulp.task( 'default', [ 'phpMin', 'cssPrep', 'jsConcat', 'watch' ] );
